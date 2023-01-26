@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="greetings">
+  <!-- <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
       You’ve successfully created a project with
@@ -13,7 +13,7 @@ defineProps<{
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
       What's next?
     </h3>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>
