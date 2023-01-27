@@ -2,15 +2,9 @@
 import { computed, ref } from 'vue'
 
 let id = 0
-
 const newTodo = ref('')
 
-//test using Maps
 const toDoMap = new Map()
-
-// toDoMap.set(1, 'map item 1')
-// toDoMap.set(2, 'map item 2')
-
 
 function addMapItem(){
     toDoMap.set(id++,newTodo.value )
@@ -18,10 +12,11 @@ function addMapItem(){
     console.log(toDoMap)
 }
 
-
 function removeTodo() {
 // remove to with the correct id
+console.log("Was i clicked?")
 }
+
 </script>
 
 <template>
@@ -30,7 +25,7 @@ function removeTodo() {
       <li class="box" v-for="map in toDoMap" :key="map[1]">
         <input type="checkBox">
         {{ map[1] }}
-        <!-- <button @click="removeTodo()">X</button> -->
+        <button @click="removeTodo()">X</button>
         <button>Edit</button>
       </li>
     </ul>
@@ -46,5 +41,6 @@ function removeTodo() {
 }
 .other {
     border: 1rem;
+    background-color: red;
 }
 </style>

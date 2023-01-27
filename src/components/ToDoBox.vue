@@ -1,51 +1,62 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import ToDoItem from "../components/ToDoItem.vue"
 
 let id = 0
 
 const newTodo = ref('')
-const todos = ref([
-  { id: id++, text: 'List' },
-  { id: id++, text: 'Add' },
-  { id: id++, text: 'Delete' },
-  { id: id++, text: 'Edit' },
-  { id: id++, text: 'Mark as done' },
-  { id: id++, text: 'Undo' }
-])
 
-function addTodo() {
-  todos.value.push({ id: id++, text: newTodo.value })
-  newTodo.value = ''
+//test using Maps
+const toDoMap = new Map()
+
+// toDoMap.set(1, 'default item set on ToDoBox 1')
+// toDoMap.set(2, 'default item set on ToDoBox 2')
+
+
+function addMapItem(){
+    toDoMap.set(id++,newTodo.value )
+    newTodo.value = ''
+    console.log(toDoMap)
 }
 
-function removeTodo(todo: typeof todos) {
-  // todos.value = todos.value.filter((t) => t !== todo)
-}
-function editTodo(todo: typeof todos){
-  // todo.value.text = newText
-}
-function markAsDone(todo: typeof todos) {
 
+function removeTodo() {
+  console.log("I was clicked here")
+    toDoMap.delete(0)
 }
+
 </script>
 
 <template>
+  <main class="toDoBox">
     <h2>Welcome to 2Do</h2>
-  
-    <ul>
-      <li v-for="todo in todos" :key="todo.id">
+   <ToDoItem />
+    <ul class="box">
+      <li class="box" v-for="map in toDoMap" :key="map[1]">
         <input type="checkBox">
-        {{ todo.text }}
-        <button @click="removeTodo(todo)">X</button>
+        {{ map[1] }}
+        <button @click="removeTodo()">X</button>
         <button>Edit</button>
       </li>
     </ul>
   
-    <form @submit.prevent="addTodo">
+    <form class="box" @submit.prevent="addMapItem">
       <textarea v-model="newTodo" rows="5" cols="50"></textarea>
       <button>Add a 2Do</button>    
     </form>
   
   
+  </main>
   
-  </template>
+</template>
+<style>
+.box {
+outline-width: 1rem;
+outline-color: aqua;
+  text-align: center;
+  border-top: 10px;
+}
+.toDoBox {
+  border: 5px;
+}
+</style>
