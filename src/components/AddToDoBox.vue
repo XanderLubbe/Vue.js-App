@@ -5,13 +5,13 @@
     <div class="aboutContainer">
         <p>Add a new ToDo List here</p>
 
-        <img 
+        <button class="button"><img 
             alt = "Add Icon"
             class = "addIcon"
             src = "@/assets/add.png"
             width = "100"
             height = "100"
-        />
+        /></button>
     </div>
 
 
@@ -30,11 +30,8 @@
 
     max-width: 20rem;
 }
-.toDoBox {
-
-  float: left;
-
-
+.button {
+    /* border-style: dashed; */
 }
 
 </style>

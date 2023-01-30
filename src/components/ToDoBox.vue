@@ -22,7 +22,8 @@ function addMapItem(){
 
 function removeTodo() {
   console.log("I was clicked here")
-    toDoMap.delete(0)
+    toDoMap.delete([id])
+    console.log(toDoMap)
 }
 
 </script>
