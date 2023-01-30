@@ -14,13 +14,12 @@ function addMapItem(){
 
 function removeTodo() {
 // remove to with the correct id
-console.log("Was i clicked?")
 }
 
 </script>
 
 <template>
-    <p>This is the ToDoLtem thingy</p>
+    <p>These are your ToDo items</p>
     <ul class="box">
       <li class="box" v-for="map in toDoMap" :key="map[1]">
         <input type="checkBox">
@@ -29,15 +28,12 @@ console.log("Was i clicked?")
         <button>Edit</button>
       </li>
     </ul>
-  
-
 </template>
 
 <style>
 .item {
     text-align: right;
     border-bottom: 2px;
-
 }
 .other {
     border: 1rem;

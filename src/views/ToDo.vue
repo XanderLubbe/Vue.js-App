@@ -5,7 +5,6 @@ import ToDoBox from "../components/ToDoBox.vue";
 <template>
     <main>
         <div class="about">
-            <p>ToDo view lies here</p>
 
         </div>
     </main> 
@@ -13,7 +12,9 @@ import ToDoBox from "../components/ToDoBox.vue";
 </template>
 
 <style>
-.template {
+/* .template {
     background-color: red;
-}
+} */
+
+
 </style>

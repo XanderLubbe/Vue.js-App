@@ -43,20 +43,18 @@ function removeTodo() {
     <form class="box" @submit.prevent="addMapItem">
       <textarea v-model="newTodo" rows="5" cols="50"></textarea>
       <button>Add a 2Do</button>    
-    </form>
-  
-  
-  </main>
-  
+    </form>  
+  </main>  
 </template>
+
 <style>
-.box {
+/* .box {
 outline-width: 1rem;
 outline-color: aqua;
   text-align: center;
   border-top: 10px;
-}
+} */
 .toDoBox {
-  border: 5px;
+  background-color: burlywood;
 }
 </style>
