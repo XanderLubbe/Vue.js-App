@@ -30,7 +30,6 @@ function removeTodo() {
 <template>
   <main class="toDoBox">
     <h2>Welcome to 2Do</h2>
-   <ToDoItem />
     <ul class="box">
       <li class="box" v-for="map in toDoMap" :key="map[1]">
         <input type="checkBox">
@@ -40,21 +39,33 @@ function removeTodo() {
       </li>
     </ul>
   
-    <form class="box" @submit.prevent="addMapItem">
-      <textarea v-model="newTodo" rows="5" cols="50"></textarea>
+    <form class="form" @submit.prevent="addMapItem">
+      <textarea class="textArea" v-model="newTodo" rows="5" cols="30"></textarea>
       <button>Add a 2Do</button>    
     </form>  
   </main>  
 </template>
 
 <style>
-/* .box {
-outline-width: 1rem;
-outline-color: aqua;
-  text-align: center;
-  border-top: 10px;
-} */
+h2{
+ /* color: */
+}
 .toDoBox {
   background-color: burlywood;
+  border-style: solid;
+  border-radius: 15px;
+  width: 50%;
+  float: left;
+  padding: 20px;
+  max-width: 20rem;
 }
+.form {
+  max-width: 15rem;
+  background-color: red;
+}
+.textArea {
+  /* max-width: fit-content; */
+  /* align-items: center; */
+}
+
 </style>

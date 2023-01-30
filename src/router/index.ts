@@ -1,3 +1,4 @@
+import AboutVue from "@/views/About.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import ToDo from "../views/ToDo.vue";
 
@@ -9,21 +10,12 @@ const router = createRouter({
       name: "todo",
       component: ToDo,
     },
+    {
+      path: "/about",
+      name: "about",
+      component: AboutVue,
+    },
 
-    // Check out path below...component is used?
-
-    // {
-    //   path: "/about",
-    //   name: "about",
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import("../views/AboutView.vue"),
-    // },
-    // {
-    //   path: "/todo",
-    //   name: "todo",
-    // }
   ],
 });
 

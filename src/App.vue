@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import ToDo from "./views/ToDo.vue";
 </script>
 
 <template>
+  <div class="appVue">
+    <p>hey</p>
   <header>
     <img
       alt="Check logo"
@@ -14,32 +15,36 @@ import ToDo from "./views/ToDo.vue";
     />
       <nav>
         <RouterLink to="/todo">ToDo</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
       </nav>
       <RouterView />
   </header>
 
-<!-- <ToDo/> -->
-
-
+</div>
 </template>
 
 <style scoped>
+.appVue {
+  width: 100%;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
-  min-width: 1200px;
+  /* width:100%; */
+  min-width: 1000px;
   background-color: bisque;
 }
 
 .logo {
   display: block;
   margin: 0 auto 2rem;
+  text-align: left;
 }
 
 nav {
   width: 100%;
   font-size: 12px;
-  text-align: center;
+  text-align: left;
   margin-top: 2rem;
   background-color: aqua;
 }

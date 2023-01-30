@@ -19,7 +19,7 @@ function removeTodo() {
 </script>
 
 <template>
-    <p>These are your ToDo items</p>
+    <p>These are your t</p>
     <ul class="box">
       <li class="box" v-for="map in toDoMap" :key="map[1]">
         <input type="checkBox">
