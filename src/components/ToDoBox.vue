@@ -20,9 +20,9 @@ function addMapItem(){
 }
 
 
-function removeTodo() {
+function removeTodo(id: number) {
   console.log("I was clicked here")
-    toDoMap.delete([id])
+    toDoMap.delete(id)
     console.log(toDoMap)
 }
 
@@ -35,7 +35,7 @@ function removeTodo() {
       <li class="box" v-for="map in toDoMap" :key="map[1]">
         <input type="checkBox">
         {{ map[1] }}
-        <button @click="removeTodo()">X</button>
+        <button @click="removeTodo(map[0])">X</button>
         <button>Edit</button>
       </li>
     </ul>
