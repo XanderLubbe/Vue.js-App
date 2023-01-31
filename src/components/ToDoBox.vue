@@ -26,7 +26,7 @@ function removeItem(id: Number) {
 
 <template>
   <main class="toDoBox">
-    <h2>Welcome to To Do</h2>
+    <h2 class="titleHeading">Welcome to To Do</h2>
     <ul class="box">
       <li class="box" v-for="item in toDoListItems"  >
         <input type="checkBox">
@@ -37,7 +37,7 @@ function removeItem(id: Number) {
     </ul>
   
     <form class="form" @submit.prevent="addItem">
-      <textarea class="textArea" v-model="formInputRef" rows="5" cols="30"></textarea>
+      <textarea class="textArea" v-model="formInputRef" rows="2" cols="30"></textarea>
       <button>Add a To Do</button>    
     </form>  
   </main>  
@@ -45,24 +45,23 @@ function removeItem(id: Number) {
 
 <style>
 h2{
- /* color: */
+ color: black;
 }
 .toDoBox {
-  background-color: burlywood;
+  background-color: #01A7C2;
+  color: white;
   border-style: solid;
+  border-color: black;
   border-radius: 15px;
   width: 50%;
   float: left;
   padding: 20px;
   max-width: 20rem;
+  
 }
 .form {
   max-width: 15rem;
-  background-color: red;
 }
-.textArea {
-  /* max-width: fit-content; */
-  /* align-items: center; */
-}
+
 
 </style>

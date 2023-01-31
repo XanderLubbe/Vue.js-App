@@ -4,7 +4,6 @@ import { RouterLink, RouterView } from "vue-router";
 
 <template>
   <div class="appVue">
-    <p>hey</p>
   <header>
     <img
       alt="Check logo"
@@ -17,23 +16,24 @@ import { RouterLink, RouterView } from "vue-router";
         <RouterLink to="/todo">ToDo</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
-      <RouterView />
+      
   </header>
+  <RouterView />
 
 </div>
 </template>
 
 <style scoped>
 .appVue {
-  width: auto;
-  background-color: red;
+  width: 100vw;
+  background-color: #A3BAC3;
 }
 header {
   line-height: 1.5;
   max-height: 100vh;
-  /* width:100%; */
+  width:100%;
   min-width: 1000px;
-  background-color: bisque;
+  background-color: white;
 }
 
 .logo {
@@ -47,7 +47,7 @@ nav {
   font-size: 12px;
   text-align: left;
   margin-top: 2rem;
-  background-color: aqua;
+  background-color: #007090;
 }
 
 nav a.router-link-exact-active {
@@ -62,7 +62,7 @@ nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
-  background-color: brown;
+  background-color: #EAEBED;
 }
 
 

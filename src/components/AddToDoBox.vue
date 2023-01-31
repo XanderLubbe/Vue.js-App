@@ -2,10 +2,10 @@
 </script>
 
 <template>
-    <div class="aboutContainer">
+    <div class="addToDoContainer">
         <p>Add a new ToDo List here</p>
 
-        <button class="button"><img 
+        <button class="button" @click=""><img 
             alt = "Add Icon"
             class = "addIcon"
             src = "@/assets/add.png"
@@ -18,12 +18,11 @@
 </template>
 
 <style>
-.aboutContainer {
-    background-color: burlywood;
+.addToDoContainer {
+    background-color: #01A7C2;
     border-style: solid ;
     border-radius: 15px;
     width: 50%;
-    /* float: left; */
     padding: 20px;
     margin: 20px;
     text-align: center;
@@ -31,7 +30,11 @@
     max-width: 20rem;
 }
 .button {
-    /* border-style: dashed; */
+    background-color: transparent;
+    border: none;
+}
+.button:active {
+    transform: translate3d(2px, 2px, 0px)
 }
 
 </style>

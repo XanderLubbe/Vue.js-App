@@ -16,12 +16,8 @@ import AddToDoBox from "@/components/AddToDoBox.vue";
 </template>
 
 <style>
-/* .template {
-    background-color: red;
-} */
+
 .ToDoContainer {
-    border-style: dashed;
-    border-color: red;
     padding: 20px;
     display: flex;
 
