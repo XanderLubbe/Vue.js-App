@@ -26,7 +26,7 @@ import { RouterLink, RouterView } from "vue-router";
 <style scoped>
 .appVue {
   width: 100vw;
-  background-color: #A3BAC3;
+  background-color: white;
 }
 header {
   line-height: 1.5;
@@ -40,6 +40,7 @@ header {
   display: block;
   margin: 0 auto 2rem;
   text-align: left;
+  padding: 10px;
 }
 
 nav {

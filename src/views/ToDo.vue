@@ -16,11 +16,13 @@ let thingy = ref()
 
 const toDoListStore = useToDoListStore();
 
+
 onMounted(() => {
     console.log("onMounted has commenced")
     toDoListStore.fetchData()
-    console.log("Fetching data?")
+
 })
+
 
 </script>
 
@@ -32,15 +34,16 @@ onMounted(() => {
     </main>
     <div class="ToDoContainer">
         <ToDoBox :userName=thingy />
-        <AddToDoBox />
-        <EditToDoItem />
+        <!-- <AddToDoBox /> -->
+        <!-- <EditToDoItem /> -->
     </div>
 </template>
 
 <style>
 .ToDoContainer {
     padding: 20px;
-    display: flex;
-
+    display:flex;
+    flex-direction: column;
+    /* flex-direction: row; */
 }
 </style>
