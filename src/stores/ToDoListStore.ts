@@ -5,28 +5,30 @@ export const useToDoListStore = defineStore("ToDoListStore", {
 
     state: () => ({
         itemList: [] as ToDo[],
-        errorr: "",
-        piniaErrorState: false
-  
+        datahubError: "",
+        piniaErrorState: false,
+        piniaDisplayValue: false
+
     }),
 
     actions: {
         fetchData() {
             console.log("Entered fetchData action?")
-            fetch('http://192.168.68.105:9200/data/todo-app/get-todos.json')
+            fetch('http://10.103.184.171:9200/data/todo-app/get-todos.json')
                 .then((response) =>
                     response.json(),
                 )
                 .then((data) => {
-                    if(data.resultCode == "500"){
+                    if (data.resultCode == "500") {
                         console.log(data.resultCode)
-                        this.errorr = "System busy please go away."
+                        this.datahubError = data.message
                         this.piniaErrorState = true
                         return data.resultCode
                     }
                     for (let i = 0; i < data.Todos.length; i++) {
+                        this.piniaErrorState = false
                         this.itemList[i] = { id: data.Todos[i].id, text: data.Todos[i].text }
-                        this.errorr = ""
+                        this.datahubError = ""
                     }
 
 
@@ -48,7 +50,6 @@ export const useToDoListStore = defineStore("ToDoListStore", {
             })
         },
         selectedItem(id: number) {
-            // return this.itemList.fin
             return 0
         },
         editItem(id: number, text: string) {

@@ -3,13 +3,35 @@
 
 <template>
     <div class="main">
+        <div class="intro">
+            <p>Here is a Todo app to help you keep track of your busy life.</p>
+            <p>You can add, edit, delete, and mark items as done .</p>
+        </div>
 
-        <p>Here is a Todo app to help you keep track of your busy life.</p>
+
+        <div class="installation">
+            <p>To run DataHub: datahub server</p>
+            <li>datahub server</li>
+            <p>To run the project:</p>
+            <li>npm run build</li>
+            <li>npm run dev</li>
+        </div>
+
+
+
 
     </div>
 </template>
 <style>
-.main{
+.main {
     padding: 20px;
+}
+
+.intro {
+    padding: 20px;
+}
+
+.installation {
+    padding: 20px
 }
 </style>
