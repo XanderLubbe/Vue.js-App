@@ -5,7 +5,6 @@ import type { ToDo } from "../ToDoType"
 
 const toDoListStore = useToDoListStore();
 let errorState = false
-// let errorMessage = ""
 if (toDoListStore.datahubError != "") {
   errorState = true
 }
@@ -29,10 +28,10 @@ function removeItem(item: ToDo) {
 }
 
 function editItem(id: number, text: string) {
-  resetForm()
   textAreaValue.value.placeholder = "Enter ToDo here"
   toDoListStore.editItem(id, formInputRef.value)
-
+  formInputRef.value = ''
+  resetForm()
 }
 
 function populatEditing(item: ToDo) {
@@ -40,13 +39,12 @@ function populatEditing(item: ToDo) {
   console.log(item.id, "this is the id")
   editItemText = item.text
   editItemId = item.id
-  textAreaValue.value.visibility = "none";
   textAreaValue.value.placeholder = item.text;
   console.log(editItemText)
 
 }
 function resetForm() {
-  textAreaValue.value.placeholder = "Enter ToDo here"
+  return null
 }
 </script>
 
@@ -68,16 +66,14 @@ function resetForm() {
     <form class="form" @submit.prevent="addItem">
       <textarea ref="textAreaValue" id="textAreaId" class="textArea" v-model="formInputRef" rows="3" cols="40"
         placeholder="Enter ToDo here"></textarea>
-      <button v-show="displayValue" class="addButton" @click=""><img alt="Add Icon" class="addIcon" src="@/assets/add.png" width="40"
-          height="40" /></button>
+      <button v-show="displayValue" class="addButton" @click=""><img alt="Add Icon" class="addIcon"
+          src="@/assets/add.png" width="40" height="40" /></button>
 
     </form>
     <div class="editingDiv">
       <button class="editButton" @click="editItem(editItemId, editItemText)">Save edits</button>
       <button class="editButton" @click="resetForm">Cancel</button>
     </div>
-
-
 
   </main>
   <div>
@@ -86,16 +82,17 @@ function resetForm() {
 </template>
 
 <style>
-.editingDiv{
+.editingDiv {
   margin: 0 auto;
   width: 350px;
 
 }
-.editgButton{
+
+.editgButton {
   align-self: center;
 }
+
 .editToDoBox {
-  /* visibility: hidden; */
   position: relative;
   right: -23.5%;
   top: +50%;
@@ -109,8 +106,6 @@ h2 {
 }
 
 .toDoBox {
-  /* position: relative; */
-  /* left: -450px; */
   background-color: #01A7C2;
   color: white;
   font-size: large;
@@ -154,9 +149,7 @@ input[type=checkbox]:checked+li.strikethrough {
   padding: 5px;
   padding-left: 10px;
 }
-
 .il {
-  /* display:inline-block; */
   border-bottom: 1px solid #000;
   padding: 20px;
 }
