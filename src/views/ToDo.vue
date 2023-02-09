@@ -25,7 +25,7 @@ onMounted(() => {
         </div>
     </main>
     <div class="ToDoContainer">
-        <ToDoBox :userName=thingy />
+        <ToDoBox  />
     </div>
 </template>
 

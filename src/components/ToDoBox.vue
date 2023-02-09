@@ -10,6 +10,7 @@ if (toDoListStore.datahubError != "") {
 }
 
 let id = 100
+// TODO: WE don't need both of these!
 const textAreaValue = ref(null)
 const formInputRef = ref('')
 let editItemText = ''
@@ -27,21 +28,25 @@ function removeItem(item: ToDo) {
   toDoListStore.removeItem(item.id)
 }
 
-function editItem(id: number, text: string) {
-  textAreaValue.value.placeholder = "Enter ToDo here"
+function editItem(id: number) {
   toDoListStore.editItem(id, formInputRef.value)
+  textAreaValue.value.value = ""
   formInputRef.value = ''
   resetForm()
 }
 
 function populatEditing(item: ToDo) {
-  toDoListStore.findIndexOfSelectedItem(item.id)
+  toDoListStore.undoPopulate(item.id, item.text)
+  console.log("Here is ", toDoListStore.findIndexOfSelectedItem(item.id))
   console.log(item.id, "this is the id")
   editItemText = item.text
   editItemId = item.id
-  textAreaValue.value.placeholder = item.text;
+  textAreaValue.value.value = item.text;
   console.log(editItemText)
-
+}
+function undoButtonClicked(){
+  console.log("undo button clciked: ",toDoListStore.undoObject)
+  toDoListStore.editItem(toDoListStore.undoObject.id, toDoListStore.undoObject.text)
 }
 function resetForm() {
   return null
@@ -71,8 +76,11 @@ function resetForm() {
 
     </form>
     <div class="editingDiv">
-      <button class="editButton" @click="editItem(editItemId, editItemText)">Save edits</button>
+      <button class="editButton" @click="editItem(editItemId)">Save edits</button>
       <button class="editButton" @click="resetForm">Cancel</button>
+    </div>
+    <div>
+      <button @click="undoButtonClicked">Undo</button>
     </div>
 
   </main>
