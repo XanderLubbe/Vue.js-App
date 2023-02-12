@@ -13,18 +13,20 @@ let id = 100
 // TODO: WE don't need both of these!
 const textAreaValue = ref(null)
 const formInputRef = ref('')
-let editItemText = ''
 let editItemId: number
 let displayValue = true
 let errorMessage = toDoListStore.datahubError
 
 function addItem() {
-  toDoListStore.addItem(id++, formInputRef.value)
+  toDoListStore.addItem(id, formInputRef.value)
+  toDoListStore.populateUndoList(id, formInputRef.value, "add")
   formInputRef.value = ''
+  id++
 }
 
 
 function removeItem(item: ToDo) {
+  toDoListStore.populateUndoList(item.id, item.text, "remove")
   toDoListStore.removeItem(item.id)
 }
 
@@ -32,21 +34,18 @@ function editItem(id: number) {
   toDoListStore.editItem(id, formInputRef.value)
   textAreaValue.value.value = ""
   formInputRef.value = ''
-  resetForm()
+  // resetForm()
 }
 
 function populatEditing(item: ToDo) {
-  toDoListStore.undoPopulate(item.id, item.text)
-  console.log("Here is ", toDoListStore.findIndexOfSelectedItem(item.id))
-  console.log(item.id, "this is the id")
+  toDoListStore.populateUndoList(item.id, item.text, "edit")
   editItemText = item.text
   editItemId = item.id
   textAreaValue.value.value = item.text;
-  console.log(editItemText)
 }
-function undoButtonClicked(){
-  console.log("undo button clciked: ",toDoListStore.undoObject)
-  toDoListStore.editItem(toDoListStore.undoObject.id, toDoListStore.undoObject.text)
+function undoButtonClicked() {
+  console.log("undo button clciked: ", toDoListStore.undoList)
+  toDoListStore.holdUndoValues(toDoListStore.undoList.pop())
 }
 function resetForm() {
   return null
@@ -157,6 +156,7 @@ input[type=checkbox]:checked+li.strikethrough {
   padding: 5px;
   padding-left: 10px;
 }
+
 .il {
   border-bottom: 1px solid #000;
   padding: 20px;
