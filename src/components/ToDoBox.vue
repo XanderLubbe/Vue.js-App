@@ -12,20 +12,22 @@ let showSaveEditsButton = false
 let showAddButton = true
 
 onMounted(() => {
-    console.log("onMounted has commenced")
-    toDoListStore.fetchData()
+  console.log("onMounted has commenced")
+  toDoListStore.fetchData()
 })
 
 function addItem() {
-  toDoListStore.addItem(id, formInputRef.value)
-  toDoListStore.addUndoItem(id, formInputRef.value, "add")
+  const newItem: ToDo = { id, text: formInputRef.value, action: "add", textTreatment: undefined }
+  toDoListStore.addItem(newItem)
+  toDoListStore.addUndoItem({ ...newItem })
   resetForm()
   id++
 }
 
 
 function removeItem(item: ToDo) {
-  toDoListStore.addUndoItem(item.id, item.text, "remove")
+  item.action = "remove"
+  toDoListStore.addUndoItem({ ...item })
   toDoListStore.removeItem(item.id)
 }
 
@@ -35,18 +37,21 @@ function onSaveEditClicked(id: number) {
 }
 
 function onEditClicked(item: ToDo) {
-  toDoListStore.addUndoItem(item.id, item.text, "edit")
+  item.action = "edit"
+  toDoListStore.addUndoItem({ ...item })
   editItemId = item.id
   formInputRef.value = item.text;
   showSaveEditsButton = true
   showAddButton = false
 }
+
 function undoButtonClicked() {
   const poppedItem = toDoListStore.undoList.pop()
   if (poppedItem != undefined) {
     toDoListStore.holdUndoValues(poppedItem)
   }
 }
+
 function resetForm() {
   showSaveEditsButton = false
   showAddButton = true
@@ -64,21 +69,22 @@ function resetForm() {
       <li class="il" v-for="item in toDoListStore.itemList">
         <input type="checkBox">
         {{ item.text }}
-        <button @click="removeItem(item)">X</button>
+        <button class="removeButton" @click="removeItem(item)">X</button>
         <button @click.prevent="onEditClicked(item)">Edit</button>
       </li>
     </ol>
 
     <form class="form" @submit.prevent="addItem">
-      <textarea id="textAreaId" class="textArea" v-model="formInputRef" rows="3" cols="40"
-        placeholder="Enter ToDo here"></textarea>
-      <button class="addButton" v-show="showAddButton" @click=""><img alt="Add Icon" class="addIcon"
-          src="@/assets/add.png" width="40" height="40" /></button>
+      <textarea id="textAreaId" v-model="formInputRef" rows="3" cols="40" placeholder="Enter ToDo here"></textarea>
+
+      <div class="editingDiv">
+        <button class="addButton" v-show="showAddButton" @click=""><img alt="Add Icon" class="addIcon"
+            src="@/assets/add.png" width="40" height="40" /></button>
+        <button class="editButton" v-show="showSaveEditsButton" @click.prevent="onSaveEditClicked(editItemId)">Save
+          edits</button>
+        <button class="cancelButton" @click.prevent="resetForm">Cancel</button>
+      </div>
     </form>
-    <div class="editingDiv">
-      <button class="editButton" v-show="showSaveEditsButton" @click="onSaveEditClicked(editItemId)">Save edits</button>
-      <button class="cancelButton" @click="resetForm">Cancel</button>
-    </div>
     <div>
       <button @click="undoButtonClicked">Undo</button>
     </div>
@@ -90,10 +96,12 @@ function resetForm() {
 </template>
 
 <style>
+
 .editingDiv {
   margin: 0 auto;
   width: 350px;
-
+  display: flex;
+  align-items: center;
 }
 
 .editgButton {
@@ -117,10 +125,6 @@ h2 {
   background-color: #01A7C2;
   color: white;
   font-size: large;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 5px;
   float: left;
   padding: 20px;
   width: 50rem;
@@ -134,6 +138,7 @@ input[type=checkbox]:checked+li.strikethrough {
 .addButton {
   background-color: transparent;
   border: none;
+  box-shadow: none;
 }
 
 .form {
@@ -142,12 +147,7 @@ input[type=checkbox]:checked+li.strikethrough {
 }
 
 .titleHeading {
-  margin: 0 auto;
-  width: 350px;
-}
-
-.textArea {
-  align-items: center;
+  text-align: center;
 }
 
 .box {
@@ -161,5 +161,9 @@ input[type=checkbox]:checked+li.strikethrough {
 .il {
   border-bottom: 1px solid #000;
   padding: 20px;
+}
+
+textarea {
+  border-radius: 4px;
 }
 </style>

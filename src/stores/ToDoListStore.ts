@@ -37,8 +37,8 @@ export const useToDoListStore = defineStore("ToDoListStore", {
                     return 500
                 })
         },
-        addItem(id: number, text: string) {
-            this.itemList.push({ id, text, action: "add" })
+        addItem(item: ToDo) {
+            this.itemList.push(item)
         },
         removeItem(id: number) {
             const i = this.itemList.findIndex((item) => {
@@ -57,19 +57,21 @@ export const useToDoListStore = defineStore("ToDoListStore", {
             return 0
         },
         editItem(id: number, text: string) {
-            this.itemList[id].text = text;
-            this.itemList[id].action = "edit"
+            const index = this.findIndexOfSelectedItem(id)
+            this.itemList[index].text = text;
+            this.itemList[index].action = "edit"
         },
-        addUndoItem(id: number, text: string, action: string) {
-            this.undoList.push({ id, text, action })
+        addUndoItem(item: ToDo) {
+            this.undoList.push(item)
         },
         holdUndoValues(item: ToDo) {
             if (item.action == "add") {
                 this.removeItem(item.id)
             } else if (item.action == "edit") {
+                // FIXME: ID is not an index!
                 this.editItem(item.id, item.text)
-            } else {
-                this.addItem(item.id, item.text)
+            } else if (item.action == "remove") {
+                this.addItem(item)
             }
         }
     }

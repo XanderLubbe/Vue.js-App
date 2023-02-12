@@ -19,6 +19,6 @@ import ToDoBox from "../components/ToDoBox.vue";
     padding: 20px;
     display: flex;
     flex-direction: column;
-    /* flex-direction: row; */
+    background-color: #01A7C2;
 }
 </style>
