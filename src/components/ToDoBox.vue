@@ -13,6 +13,7 @@ let id = 100
 // TODO: WE don't need both of these!
 const textAreaValue = ref(null)
 const formInputRef = ref('')
+let editItemText = ''
 let editItemId: number
 let displayValue = true
 let errorMessage = toDoListStore.datahubError
