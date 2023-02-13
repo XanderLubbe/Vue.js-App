@@ -2,14 +2,21 @@
 import { onMounted, ref } from 'vue'
 import { useToDoListStore } from "../stores/ToDoListStore"
 import type { ToDo } from "../ToDoType"
+import ToDoItem from './ToDoItem.vue';
 
 const toDoListStore = useToDoListStore();
+
+defineProps({
+  testProp: String,
+})
 
 let id = 100
 const formInputRef = ref('')
 let editItemId: number
 let showSaveEditsButton = false
 let showAddButton = true
+
+
 
 onMounted(() => {
   console.log("onMounted has commenced")
@@ -22,6 +29,7 @@ function addItem() {
   toDoListStore.addUndoItem({ ...newItem })
   resetForm()
   id++
+  // testProp = "Hello"
 }
 
 
@@ -63,6 +71,7 @@ function resetForm() {
 
   <main class="toDoBox">
     <h2 class="titleHeading">Add your ToDo items below</h2>
+    <!-- <ToDoItem /> -->
     <div v-if="toDoListStore.piniaErrorState"><span>{{ toDoListStore.datahubError }}</span></div>
 
     <ol class="box">
@@ -96,7 +105,6 @@ function resetForm() {
 </template>
 
 <style>
-
 .editingDiv {
   margin: 0 auto;
   width: 350px;
@@ -118,7 +126,7 @@ function resetForm() {
 }
 
 h2 {
-  color: black;
+  color: white;
 }
 
 .toDoBox {

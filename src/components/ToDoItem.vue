@@ -1,42 +1,40 @@
 <script setup lang="ts">
-// import { computed, ref } from 'vue'
+import { useToDoListStore } from '@/stores/ToDoListStore';
+import type { ToDo } from '@/ToDoType';
+import ToDoBox from "../components/ToDoBox.vue";
 
-// let id = 0
-// const newTodo = ref('')
 
-// const toDoMap = new Map()
+const toDoListStore = useToDoListStore();
 
-// function addMapItem(){
-//     toDoMap.set(id++,newTodo.value )
-//     newTodo.value = ''
-//     console.log(toDoMap)
-// }
+function removeItem(item: ToDo) {
+  item.action = "remove"
+  toDoListStore.addUndoItem({ ...item })
+  toDoListStore.removeItem(item.id)
+}
 
-// function removeTodo() {
-// // remove to with the correct id
-// }
+function onEditClicked(item: ToDo) {
+  item.action = "edit"
+  toDoListStore.addUndoItem({ ...item })
+  editItemId = item.id
+  formInputRef.value = item.text;
+  showSaveEditsButton = true
+  showAddButton = false
+}
 
 </script>
 
 <template>
-    <!-- <p>These are your t</p>
-    <ul class="box">
-      <li class="box" v-for="map in toDoMap" :key="map[1]">
+      <ol class="box">
+      <li class="il" v-for="item in toDoListStore.itemList">
         <input type="checkBox">
-        {{ map[1] }}
-        <button @click="removeTodo()">X</button>
-        <button>Edit</button>
+        {{ item.text }}
+        <button class="removeButton" @click="ToDoBox.removeItem(item)">X</button>
+        <button @click.prevent="ToDoBox.onEditClicked(item)">Edit</button>
       </li>
-    </ul> -->
+    </ol>
+
 </template>
 
 <style>
-/* .item {
-    text-align: right;
-    border-bottom: 2px;
-}
-.other {
-    border: 1rem;
-    background-color: red;
-} */
+
 </style>

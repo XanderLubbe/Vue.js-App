@@ -14,7 +14,7 @@ export const useToDoListStore = defineStore("ToDoListStore", {
         fetchData() {
             console.log("fetching things")
 
-            fetch('http://192.168.68.113:9200/data/todo-app/get-todos.json')
+            fetch('http://10.103.184.35:9200/data/todo-app/get-todos.json')
                 .then((response) =>
                     response.json(),
                 )
@@ -28,7 +28,7 @@ export const useToDoListStore = defineStore("ToDoListStore", {
 
                     for (let i = 0; i < data.Todos.length; i++) {
                         this.piniaErrorState = false
-                        this.itemList[i] = { id: data.Todos[i].id, text: data.Todos[i].text, action: "add" }
+                        this.itemList[i] = { id: data.Todos[i].id, text: data.Todos[i].text, action: "add", textTreatment: undefined }
                         this.datahubError = ""
                     }
                 }).catch(error => {
