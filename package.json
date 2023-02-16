@@ -7,11 +7,13 @@
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
+    "datahub": "datahub server",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^1.6.1",
+    "datahub": "^0.1.0",
     "fetch": "^1.1.0",
     "pinia": "^2.0.29",
     "vite": "^2.5.4",
