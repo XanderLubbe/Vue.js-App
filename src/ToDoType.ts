@@ -1,7 +1,14 @@
+enum ItemState {
+    Active,
+    Archived,
+    Deleted
+}
+
 type ToDo = {
     id: number;
     text: string;
-    action: string;
-    textTreatment: string | undefined;
+    itemState: ItemState;
+    isCompleted: boolean
 }
 export type {ToDo}
+export {ItemState}
